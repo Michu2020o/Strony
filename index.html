@@ -7,82 +7,89 @@
   <title>Michał Okoń 3D</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #f4f4f4;
+      margin: 20 px;
+      overflow: hidden;
     }
-
-    header {
-      background-color: #333;
-      text-align: center;
-      padding: 1em;
-    }
-
-    section {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: white;
-    }
-
-
-    h2, p {
-      color: #333;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1em;
+    video {
       position: fixed;
-      bottom: 0;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: -1;
+      margin-top: 32px;
+    }
+    header {
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 20px;
+      font-size: 25px;
+    }
+    section{
+      color: white;
+      position: fixed ;
+      top: 20px;
+      right: 20px;
+      font-size: 25px;
+    }
+    .animowane {
+      position: relative;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+    }
+    .animowane::before{
+      content: "";
+      position: absolute;
       width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: transform 0.3s ease, visibility 0.3s ease;
+    }
+    .animowane:hover::before{
+      visibility: visible;
+      transform: scaleX(1);
+    }
+    .linia{
+      white-space: nowrap;
+    }
+    .linia span{
+      margin-right: 25px;
+    }
+    .hide{
+      color: transparent; 
+      user-select: none;
+    }
+    .nielink{
+      display: inline-block;
+      font-size: 25px;
+      cursor: pointer;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      transition: color 0.3s ease; 
     }
   </style>
 </head>
 <body>
-
+  <video autoplay muted loop>
+    <source src="zadanka/apple.mp4" type="video/mp4">
+  </video>
   <header>
-    <h1>Michał Okoń 3D</h1>
+    <p>Michał Okoń 3D</p>
   </header>
 
   <section>
-    <h2>Michał Okoń 3D</h2>
-    <p>Zadania z witryn i aplikacji internetowych</p>
+    <span class="animowane linia"><a href="zadania.html" class="nielink">Zadania</a></span>
+    <span class="linia hide">a</span>
+    <span class="animowane linia"><a href="omnie.html" class="nielink">O Mnie</a></span>
   </section>
-
-  <section>
-    <h2>Linki</h2>
-    <ul>
-      <li><a href="zadanka/listopada.html">Strona 11 listopada</a>
-      <li><a href="zadanka/halloween.html">Strona Halloween</a>
-      <li><a href="zadanka/wizytowka.html">Strona Wizytówka</a>
-      <li><a href="zadanka/inwokacja.html">Strona Inwokacja</a>
-      <li><a href="zadanka/pszenica.html">Strona Pszenica</a>
-      <li><a href="zadanka/przegladarki.html">Strona Charakterystyka przeglądarek</a>
-    </ul>
-  </section>
-
-  <footer>
-    <p>Kontakt: michu2020o@email.com</p>
-  </footer>
-
 
 <!--          ><(((('>          -->
 </body>

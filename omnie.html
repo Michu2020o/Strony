@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="zadanka/apple.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michał Okoń 3D</title>
+  <style>
+    body {
+      margin: 20 px;
+      overflow: hidden;
+    }
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: -1;
+      margin-top: 32px;
+    }
+    header {
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 20px;
+      font-size: 25px;
+    }
+    section{
+      color: white;
+      position: fixed ;
+      top: 20px;
+      right: 20px;
+      font-size: 25px;
+    }
+    .animowane {
+      position: relative;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+    }
+    .animowane::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: transform 0.3s ease, visibility 0.3s ease;
+    }
+    .animowane:hover::before{
+      visibility: visible;
+      transform: scaleX(1);
+    }
+    .linia{
+      white-space: nowrap;
+    }
+    .linia span{
+      margin-right: 25px;
+    }
+    .hide{
+      color: transparent; 
+      user-select: none;
+    }
+    .nielink{
+      display: inline-block;
+      font-size: 25px;
+      cursor: pointer;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      transition: color 0.3s ease; 
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop>
+    <source src="zadanka/apple.mp4" type="video/mp4">
+  </video>
+  <header>
+    <p>Michał Okoń 3D</p>
+    <br>
+    <p>kontakt:<li>mail - Michu2020o@gmail.com</li></p>
+  </header>
+
+  <section>
+    <span class="animowane linia"><a href="index.html" class="nielink">Strona Główna</a></span>
+    <span class="linia hide">a</span>
+    <span class="animowane linia"><a href="zadania.html" class="nielink">Zadania</a></span>
+  </section>
+
+<!--          ><(((('>          -->
+</body>
+</html>
