@@ -27,7 +27,7 @@
     color: white;
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 80px;
     font-size: 25px;
   }
   p{
@@ -36,7 +36,7 @@
   }
   footer{
     color: white;
-    position: end;
+    margin-top:190% ;
   }
   .animowane {
     position: relative;
