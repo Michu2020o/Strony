@@ -26,8 +26,8 @@
   section {
     color: white;
     position: fixed;
-    top: 20px;
-    right: 80px;
+    top: 18px;
+    right: 20px;
     font-size: 25px;
   }
   p{
@@ -36,7 +36,10 @@
   }
   footer{
     color: white;
-    margin-top:190% ;
+    position: fixed;
+    bottom: 0;
+    left: 20px; 
+    font-size: 14px;
   }
   .animowane {
     position: relative;
@@ -84,8 +87,9 @@
     margin: 0;
     position: absolute;
     background-color: black;
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    right: 0;
   }
   .dropdown-list li {
     padding: 6px;
@@ -93,7 +97,7 @@
     border-bottom: 1px solid white;
   }
   .dropdown-container:hover .dropdown-list {
-    display: block;
+    display: block ;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 900px) {
@@ -119,13 +123,13 @@
     position: absolute;
     top: 0;
     left: 20px;
-    font-size: 25px;
+    font-size: 20px;
   }
   section {
     color: white;
     position: fixed;
     top: 20px;
-    right: 100px;
+    right: 20px;
     font-size: 20px;
   }
   p{
@@ -134,7 +138,10 @@
   }
   footer{
     color: white;
-    margin-top: 96% ;
+    position: fixed;
+    bottom: 0;
+    left: 20px; 
+    font-size: 20px;
   }
   .animowane {
     position: relative;
@@ -182,8 +189,9 @@
     margin: 0;
     position: absolute;
     background-color: black;
-    box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    right: 0;
   }
   .dropdown-list li {
     padding: 9px;
@@ -191,7 +199,7 @@
     border-bottom: 1px solid white;
   }
   .dropdown-container:hover .dropdown-list {
-    display: block;
+    display: block ;
   }
 }
 @media only screen and (min-width: 901px) {
@@ -223,7 +231,7 @@
     color: white;
     position: fixed;
     top: 20px;
-    right: 120px;
+    right: 20px;
     font-size: 25px;
   }
   p{
@@ -232,7 +240,10 @@
   }
   footer{
     color: white;
-    margin-top:50% ;
+    position: fixed;
+    bottom: 0;
+    left: 20px; 
+    font-size: 18px;
   }
   .animowane {
     position: relative;
@@ -280,8 +291,9 @@
     margin: 0;
     position: absolute;
     background-color: black;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    right: 0;
   }
   .dropdown-list li {
     padding: 12px;
@@ -289,6 +301,6 @@
     border-bottom: 1px solid white;
   }
   .dropdown-container:hover .dropdown-list {
-    display: block;
+    display: block ;
   }
   }
