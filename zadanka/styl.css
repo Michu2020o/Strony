@@ -1,8 +1,13 @@
     
-    section{
+    body{
+      overflow: auto;
+    }
+    footer{
       color: rgb(0, 0, 0);
-      position: fixed ;
       font-size: 20px;
+      position: fixed;
+      bottom: 10;
+      left: 20px; 
     }
     .animowane::before{
       content: "";
