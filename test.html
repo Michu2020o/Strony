@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Generator CV w PDF</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<h2>Twój formularz CV</h2>
+<form id="cvForm">
+    Imię: <input type="text" name="firstName" id="firstName"><br>
+    Nazwisko: <input type="text" name="lastName" id="lastName"><br>
+    Email: <input type="email" name="email" id="email"><br>
+    Doświadczenie: <textarea name="experience" id="experience"></textarea><br>
+    <input type="button" value="Generuj PDF" onclick="generatePDF()">
+</form>
+
+<script>
+function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text('CV', 20, 20);
+    doc.text('Imię: ' + document.getElementById('firstName').value, 20, 30);
+    doc.text('Nazwisko: ' + document.getElementById('lastName').value, 20, 40);
+    doc.text('Email: ' + document.getElementById('email').value, 20, 50);
+    doc.text('Doświadczenie:', 20, 60);
+    doc.text(document.getElementById('experience').value, 20, 70);
+
+    doc.save('cv.pdf');
+}
+</script>
+
+</body>
+</html>
