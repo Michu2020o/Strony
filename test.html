@@ -26,21 +26,29 @@
 <script>
   const { jsPDF } = window.jspdf;
 
-  function generatePDF() {
-    const doc = new jsPDF();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const summary = document.getElementById('summary').value;
+function generatePDF() {
+  const doc = new jsPDF();
 
-    doc.text(`Imię i nazwisko: ${name}`, 10, 10);
-    doc.text(`Email: ${email}`, 10, 20);
-    doc.text(`Podsumowanie:`, 10, 30);
-    doc.text(summary, 10, 40);
+  // Załaduj czcionkę obsługującą polskie znaki
+  doc.addFont('https://cdn.jsdelivr.net/gh/google/fonts/ofl/opensans/OpenSans-Regular.ttf', 'OpenSans', 'normal');
 
-    // Dodaj więcej sekcji CV według potrzeb
+  // Ustaw czcionkę dla dokumentu
+  doc.setFont('OpenSans');
 
-    doc.save('cv.pdf');
-  }
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const summary = document.getElementById('summary').value;
+
+  doc.text(`Imię i nazwisko: ${name}`, 10, 10);
+  doc.text(`Email: ${email}`, 10, 20);
+  doc.text(`Podsumowanie:`, 10, 30);
+  doc.text(summary, 10, 40);
+
+  // Dodaj więcej sekcji CV według potrzeb
+
+  doc.save('cv.pdf');
+}
+
 </script>
 </body>
 </html>
