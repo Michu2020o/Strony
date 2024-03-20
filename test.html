@@ -1,82 +1,58 @@
+import pdfkit
+
+html_content = """
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Generator CV PDF</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<style>
-    body { font-family: Arial, sans-serif; }
-    .container { width: 80%; margin: auto; }
-    .form-group { margin-bottom: 10px; }
-    label { display: block; }
-    input, textarea { width: 100%; padding: 8px; }
-    button { padding: 10px 15px; }
-</style>
+  <title>Curriculum Vitae</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Formularz CV</h2>
-    <form id="cvForm">
-        <div class="form-group">
-            <label for="firstName">Imię:</label>
-            <input type="text" id="firstName" name="firstName" required>
-        </div>
-        <div class="form-group">
-            <label for="lastName">Nazwisko:</label>
-            <input type="text" id="lastName" name="lastName" required>
-        </div>
-        <!-- Dodaj więcej pól formularza zgodnie z sekcjami CV -->
-        <button type="button" onclick="generatePDF()">Generuj PDF</button>
-    </form>
-</div>
-
-<script>
-function generatePDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.addFont('https://cdn.jsdelivr.net/gh/lcdsantos/jQuery-FontSpy/DejaVuSans.ttf', 'DejaVuSans', 'normal');
-
-    // Ustawiamy font na DejaVuSans
-    doc.setFont('DejaVuSans');
-    // Ustawienia formatowania dla jsPDF
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-
-    // Przykładowe dane, które mogą być pobrane z formularza
-    const firstName = 'Anna';
-    const lastName = 'Kowalska';
-    const email = 'anna.kowalska@op.pl';
-    const phone = '+48 534 280 000';
-    const experience = '01.2018 - obecnie - Specjalista ds. marketingu | Kraków';
-    const education = '10.2004 - 06.2008 - Zarzadzanie | Uniwersytet Jagiellonski';
-    const languages = 'angielski komunikatywny (B1)';
-    const skills = 'Umiejętności komunikacyjne, praca zespołowa';
-    const interests = 'Podróże, fotografia';
-
-    // Dodawanie treści do PDF
-    doc.setTextColor(0); // Ustawia kolor tekstu na czarny
-    doc.text('CV', 20, 20);
-    doc.text(`Imię: ${firstName}`, 20, 30);
-    doc.text(`Nazwisko: ${lastName}`, 20, 40);
-    doc.text(`E-mail: ${email}`, 20, 50);
-    doc.text(`Telefon: ${phone}`, 20, 60);
-    doc.text('Doświadczenie Zawodowe:', 20, 70);
-    doc.text(experience, 20, 80);
-    doc.text('Wykształcenie:', 20, 90);
-    doc.text(education, 20, 100);
-    doc.text('Znajomość Języków:', 20, 110);
-    doc.text(languages, 20, 120);
-    doc.text('Umiejętności:', 20, 130);
-    doc.text(skills, 20, 140);
-    doc.text('Zainteresowania:', 20, 150);
-    doc.text(interests, 20, 160);
-
-    // Zapisywanie PDF
-    doc.save('cv.pdf');
-}
-
-</script>
-
+  <div class="header">
+    <h1>Curriculum Vitae</h1>
+  </div>
+  
+  <div class="section">
+    <h2>Personal Information</h2>
+    <p>Name: John Doe</p>
+    <p>Email: john.doe@example.com</p>
+    <p>Phone: 123-456-789</p>
+  </div>
+  
+  <div class="section">
+    <h2>Education</h2>
+    <p>Degree: Bachelor of Science in Computer Science</p>
+    <p>School: University of Example</p>
+    <p>Year: 2020</p>
+  </div>
+  
+  <div class="section">
+    <h2>Experience</h2>
+    <p>Position: Software Engineer</p>
+    <p>Company: Example Corp</p>
+    <p>Year: 2020-present</p>
+  </div>
 </body>
 </html>
+"""
+
+# Zapisz kod HTML do pliku
+with open('cv.html', 'w') as f:
+    f.write(html_content)
+
+# Wygeneruj PDF z pliku HTML
+pdfkit.from_file('cv.html', 'cv.pdf')
