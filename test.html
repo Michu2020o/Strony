@@ -58,5 +58,47 @@
       <button type="submit">Generate PDF</button>
     </form>
   </div>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('form').onsubmit = function(e) {
+    e.preventDefault(); // Zapobiegamy standardowej akcji wysyłania formularza
+
+    // Pobieramy wartości z formularza
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const education = document.getElementById('education').value;
+    const experience = document.getElementById('experience').value;
+
+    // Wywołujemy funkcję generatePDF z pobranymi danymi
+    generatePDF(name, email, phone, education, experience);
+  };
+});
+
+function generatePDF(name, email, phone, education, experience) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Dodajemy font DejaVuSans
+  doc.addFont('https://cdn.jsdelivr.net/gh/lcdsantos/jQuery-FontSpy/DejaVuSans.ttf', 'DejaVuSans', 'normal');
+
+  // Ustawiamy font na DejaVuSans
+  doc.setFont('DejaVuSans');
+  doc.setFontSize(10);
+  doc.setTextColor(0); // Ustawiamy kolor tekstu na czarny
+
+  // Dodajemy treść do PDF
+  doc.text('CV', 20, 20);
+  doc.text(`Imię: ${name}`, 20, 30);
+  doc.text(`E-mail: ${email}`, 20, 40);
+  doc.text(`Telefon: ${phone}`, 20, 50);
+  doc.text('Wykształcenie:', 20, 60);
+  doc.text(education, 20, 70);
+  doc.text('Doświadczenie Zawodowe:', 20, 80);
+  doc.text(experience, 20, 90);
+
+  // Zapisujemy PDF
+  doc.save('cv.pdf');
+}
+
 </body>
 </html>
