@@ -62,19 +62,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script>
     function generatePDF() {
-      var doc = new jsPDF();
+      const & jsPDF } = window. jspdf;
+      const doc = new jsPDF ();
 
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var phone = document.getElementById('phone').value;
-      var education = document.getElementById('education').value;
-      var experience = document.getElementById('experience').value;
-
-      doc.text(20, 20, 'Name: ' + name);
-      doc.text(20, 30, 'Email: ' + email);
-      doc.text(20, 40, 'Phone: ' + phone);
-      doc.text(20, 50, 'Education: ' + education);
-      doc.text(20, 60, 'Experience: ' + experience);
+     doc. text( 'CV', 20, 20);
+     doc. text( 'Imie: ' + document.getElementById( 'name' ).value, 20, 50);
+    
 
       doc.save('CV.pdf');
     }
