@@ -36,14 +36,42 @@ function generatePDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Dodaj tutaj treść CV
-    doc.text('CV', 20, 20);
-    doc.text('Imię: ' + document.getElementById('firstName').value, 20, 30);
-    doc.text('Nazwisko: ' + document.getElementById('lastName').value, 20, 40);
-    // Dodaj więcej sekcji zgodnie z przesłanym CV
+    // Ustawienia formatowania dla jsPDF
+    doc.setFontSize(10);
+    doc.setTextColor(100);
 
+    // Przykładowe dane, które mogą być pobrane z formularza
+    const firstName = 'Anna';
+    const lastName = 'Kowalska';
+    const email = 'anna.kowalska@op.pl';
+    const phone = '+48 534 280 000';
+    const experience = '01.2018 - obecnie - Specjalista ds. marketingu | Kraków';
+    const education = '10.2004 - 06.2008 - Zarzadzanie | Uniwersytet Jagiellonski';
+    const languages = 'angielski komunikatywny (B1)';
+    const skills = 'Umiejętności komunikacyjne, praca zespołowa';
+    const interests = 'Podróże, fotografia';
+
+    // Dodawanie treści do PDF
+    doc.text('CV', 20, 20);
+    doc.text(`Imię: ${firstName}`, 20, 30);
+    doc.text(`Nazwisko: ${lastName}`, 20, 40);
+    doc.text(`E-mail: ${email}`, 20, 50);
+    doc.text(`Telefon: ${phone}`, 20, 60);
+    doc.text('Doświadczenie Zawodowe:', 20, 70);
+    doc.text(experience, 20, 80);
+    doc.text('Wykształcenie:', 20, 90);
+    doc.text(education, 20, 100);
+    doc.text('Znajomość Języków:', 20, 110);
+    doc.text(languages, 20, 120);
+    doc.text('Umiejętności:', 20, 130);
+    doc.text(skills, 20, 140);
+    doc.text('Zainteresowania:', 20, 150);
+    doc.text(interests, 20, 160);
+
+    // Zapisywanie PDF
     doc.save('cv.pdf');
 }
+
 </script>
 
 </body>
