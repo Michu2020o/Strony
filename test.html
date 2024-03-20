@@ -30,10 +30,12 @@ function generatePDF() {
   const doc = new jsPDF();
 
   // Załaduj czcionkę obsługującą polskie znaki
-  doc.addFont('https://cdn.jsdelivr.net/gh/google/fonts/ofl/opensans/OpenSans-Regular.ttf', 'OpenSans', 'normal');
+doc.addFileToVFS('OpenSans-Regular.ttf', /* tutaj wstaw zawartość czcionki w formacie Base64 */);
+doc.addFont('OpenSans-Regular.ttf', 'OpenSans', 'normal');
 
-  // Ustaw czcionkę dla dokumentu
-  doc.setFont('OpenSans');
+// Ustaw czcionkę dla dokumentu
+doc.setFont('OpenSans');
+
 
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
