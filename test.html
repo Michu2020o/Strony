@@ -2,55 +2,46 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Generator CV PDF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV</title>
 <style>
   body { font-family: Arial, sans-serif; }
-  .container { max-width: 600px; margin: auto; }
-  input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-  button { padding: 10px 20px; }
+  .cv-header { text-align: center; }
+  .cv-section { margin-top: 20px; }
+  .cv-section-title { font-size: 20px; border-bottom: 1px solid #000; }
 </style>
 </head>
 <body>
-<div class="container">
-  <h2>Generator CV PDF</h2>
-  <form id="cvForm">
-    <input type="text" id="name" placeholder="Imię i nazwisko" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <textarea id="summary" placeholder="Podsumowanie" rows="4" required></textarea>
-    <!-- Dodaj więcej pól według potrzeb -->
-    <button type="button" onclick="generatePDF()">Generuj PDF</button>
-  </form>
+<div class="cv-container">
+  <div class="cv-header">
+    <h1>CV</h1>
+  </div>
+  <div class="cv-contact">
+    <p>E-mail: <input type="email" name="email"></p>
+    <p>Telefon: <input type="tel" name="phone"></p>
+    <p>Data urodzenia: <input type="date" name="birthdate"></p>
+    <p>Miasto: <input type="text" name="city"></p>
+  </div>
+  <div class="cv-section">
+    <div class="cv-section-title">DOŚWIADCZENIE ZAWODOWE</div>
+    <p>Tutaj wpisz swoje doświadczenie zawodowe...</p>
+  </div>
+  <div class="cv-section">
+    <div class="cv-section-title">WYKSZTAŁCENIE</div>
+    <p>Tutaj wpisz swoje wykształcenie...</p>
+  </div>
+  <div class="cv-section">
+    <div class="cv-section-title">ZNAJOMOŚĆ JĘZYKÓW</div>
+    <p>Tutaj wpisz języki, które znasz...</p>
+  </div>
+  <div class="cv-section">
+    <div class="cv-section-title">UMIEJĘTNOŚCI</div>
+    <p>Tutaj wpisz swoje umiejętności...</p>
+  </div>
+  <div class="cv-section">
+    <div class="cv-section-title">ZAINTERESOWANIA</div>
+    <p>Tutaj wpisz swoje zainteresowania...</p>
+  </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script>
-  const { jsPDF } = window.jspdf;
-
-function generatePDF() {
-  const doc = new jsPDF();
-
-  // Załaduj czcionkę obsługującą polskie znaki
-doc.addFileToVFS('OpenSans-Regular.ttf', /* tutaj wstaw zawartość czcionki w formacie Base64 */);
-doc.addFont('OpenSans-Regular.ttf', 'OpenSans', 'normal');
-
-// Ustaw czcionkę dla dokumentu
-doc.setFont('OpenSans');
-
-
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const summary = document.getElementById('summary').value;
-
-  doc.text(`Imię i nazwisko: ${name}`, 10, 10);
-  doc.text(`Email: ${email}`, 10, 20);
-  doc.text(`Podsumowanie:`, 10, 30);
-  doc.text(summary, 10, 40);
-
-  // Dodaj więcej sekcji CV według potrzeb
-
-  doc.save('cv.pdf');
-}
-
-</script>
 </body>
 </html>
