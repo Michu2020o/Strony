@@ -55,6 +55,7 @@ function generatePDF() {
     const interests = 'Podróże, fotografia';
 
     // Dodawanie treści do PDF
+    doc.setTextColor(0); // Ustawia kolor tekstu na czarny
     doc.text('CV', 20, 20);
     doc.text(`Imię: ${firstName}`, 20, 30);
     doc.text(`Nazwisko: ${lastName}`, 20, 40);
