@@ -1,76 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-  <title>Curriculum Vitae Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      width: 50%;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-    }
-    input[type="text"],
-    textarea {
-      width: 100%;
-      padding: 5px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Generator CV PDF</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .container { max-width: 600px; margin: auto; }
+  input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
+  button { padding: 10px 20px; }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Curriculum Vitae Form</h1>
-    <form id="cvForm">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required>
-      </div>
-      <div class="form-group">
-        <label for="education">Education:</label>
-        <textarea id="education" name="education" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="experience">Experience:</label>
-        <textarea id="experience" name="experience" required></textarea>
-      </div>
-      <button type="button" onclick="generatePDF()">Generate PDF</button>
-    </form>
-  </div>
+<div class="container">
+  <h2>Generator CV PDF</h2>
+  <form id="cvForm">
+    <input type="text" id="name" placeholder="Imię i nazwisko" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="summary" placeholder="Podsumowanie" rows="4" required></textarea>
+    <!-- Dodaj więcej pól według potrzeb -->
+    <button type="button" onclick="generatePDF()">Generuj PDF</button>
+  </form>
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script>
-    function generatePDF() {
-      const & jsPDF } = window. jspdf;
-      const doc = new jsPDF ();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+  const { jsPDF } = window.jspdf;
 
-      doc. text( 'CV', 20, 20);
-      doc. text( 'Imie: ' + document.getElementById( 'name' ).value, 20, 50);
-    
+  function generatePDF() {
+    const doc = new jsPDF();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const summary = document.getElementById('summary').value;
 
-      doc.save('CV.pdf');
-    }
-  </script>
+    doc.text(`Imię i nazwisko: ${name}`, 10, 10);
+    doc.text(`Email: ${email}`, 10, 20);
+    doc.text(`Podsumowanie:`, 10, 30);
+    doc.text(summary, 10, 40);
+
+    // Dodaj więcej sekcji CV według potrzeb
+
+    doc.save('cv.pdf');
+  }
+</script>
 </body>
 </html>
