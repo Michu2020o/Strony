@@ -34,7 +34,7 @@
 <body>
   <div class="container">
     <h1>Curriculum Vitae Form</h1>
-    <form action="generate_pdf.php" method="post">
+    <form id="cvForm">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -55,51 +55,29 @@
         <label for="experience">Experience:</label>
         <textarea id="experience" name="experience" required></textarea>
       </div>
-      <button type="submit">Generate PDF</button>
+      <button type="button" onclick="generatePDF()">Generate PDF</button>
     </form>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('form').onsubmit = function(e) {
-    e.preventDefault(); // Zapobiegamy standardowej akcji wysyłania formularza
+    function generatePDF() {
+      var doc = new jsPDF();
 
-    // Pobieramy wartości z formularza
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const education = document.getElementById('education').value;
-    const experience = document.getElementById('experience').value;
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var education = document.getElementById('education').value;
+      var experience = document.getElementById('experience').value;
 
-    // Wywołujemy funkcję generatePDF z pobranymi danymi
-    generatePDF(name, email, phone, education, experience);
-  };
-});
+      doc.text(20, 20, 'Name: ' + name);
+      doc.text(20, 30, 'Email: ' + email);
+      doc.text(20, 40, 'Phone: ' + phone);
+      doc.text(20, 50, 'Education: ' + education);
+      doc.text(20, 60, 'Experience: ' + experience);
 
-function generatePDF(name, email, phone, education, experience) {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  // Dodajemy font DejaVuSans
-  doc.addFont('https://cdn.jsdelivr.net/gh/lcdsantos/jQuery-FontSpy/DejaVuSans.ttf', 'DejaVuSans', 'normal');
-
-  // Ustawiamy font na DejaVuSans
-  doc.setFont('DejaVuSans');
-  doc.setFontSize(10);
-  doc.setTextColor(0); // Ustawiamy kolor tekstu na czarny
-
-  // Dodajemy treść do PDF
-  doc.text('CV', 20, 20);
-  doc.text(`Imię: ${name}`, 20, 30);
-  doc.text(`E-mail: ${email}`, 20, 40);
-  doc.text(`Telefon: ${phone}`, 20, 50);
-  doc.text('Wykształcenie:', 20, 60);
-  doc.text(education, 20, 70);
-  doc.text('Doświadczenie Zawodowe:', 20, 80);
-  doc.text(experience, 20, 90);
-
-  // Zapisujemy PDF
-  doc.save('cv.pdf');
-}
-</script>
+      doc.save('CV.pdf');
+    }
+  </script>
 </body>
 </html>
