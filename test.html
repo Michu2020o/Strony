@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Curriculum Vitae</title>
+  <title>Curriculum Vitae Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
     }
-    .header {
-      text-align: center;
+    .container {
+      width: 50%;
+      margin: 0 auto;
+    }
+    .form-group {
       margin-bottom: 20px;
     }
-    .section {
-      margin-bottom: 20px;
+    label {
+      display: block;
+      font-weight: bold;
     }
-    .section h2 {
-      margin-bottom: 10px;
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Curriculum Vitae</h1>
-  </div>
-  
-  <div class="section">
-    <h2>Personal Information</h2>
-    <p>Name: John Doe</p>
-    <p>Email: john.doe@example.com</p>
-    <p>Phone: 123-456-789</p>
-  </div>
-  
-  <div class="section">
-    <h2>Education</h2>
-    <p>Degree: Bachelor of Science in Computer Science</p>
-    <p>School: University of Example</p>
-    <p>Year: 2020</p>
-  </div>
-  
-  <div class="section">
-    <h2>Experience</h2>
-    <p>Position: Software Engineer</p>
-    <p>Company: Example Corp</p>
-    <p>Year: 2020-present</p>
+  <div class="container">
+    <h1>Curriculum Vitae Form</h1>
+    <form action="generate_pdf.php" method="post">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="education">Education:</label>
+        <textarea id="education" name="education" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="experience">Experience:</label>
+        <textarea id="experience" name="experience" required></textarea>
+      </div>
+      <button type="submit">Generate PDF</button>
+    </form>
   </div>
 </body>
 </html>
