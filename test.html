@@ -58,6 +58,7 @@
       <button type="submit">Generate PDF</button>
     </form>
   </div>
+  <script>
   document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('form').onsubmit = function(e) {
     e.preventDefault(); // Zapobiegamy standardowej akcji wysyłania formularza
@@ -99,6 +100,6 @@ function generatePDF(name, email, phone, education, experience) {
   // Zapisujemy PDF
   doc.save('cv.pdf');
 }
-
+</script>
 </body>
 </html>
