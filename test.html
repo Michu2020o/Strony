@@ -10,38 +10,35 @@
   .cv-section { margin-top: 20px; }
   .cv-section-title { font-size: 20px; border-bottom: 1px solid #000; }
 </style>
+<script>
+function submitCV() {
+  var cvData = {
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    birthdate: document.getElementById('birthdate').value,
+    city: document.getElementById('city').value,
+    // Dodaj tutaj inne pola z formularza
+  };
+  localStorage.setItem('cvData', JSON.stringify(cvData));
+  window.location.href = 'cv-print.html'; // Przekieruj do strony do druku
+}
+</script>
 </head>
 <body>
 <div class="cv-container">
   <div class="cv-header">
     <h1>CV</h1>
   </div>
-  <div class="cv-contact">
-    <p>E-mail: <input type="email" name="email"></p>
-    <p>Telefon: <input type="tel" name="phone"></p>
-    <p>Data urodzenia: <input type="date" name="birthdate"></p>
-    <p>Miasto: <input type="text" name="city"></p>
-  </div>
-  <div class="cv-section">
-    <div class="cv-section-title">DOŚWIADCZENIE ZAWODOWE</div>
-    <p>Tutaj wpisz swoje doświadczenie zawodowe...</p>
-  </div>
-  <div class="cv-section">
-    <div class="cv-section-title">WYKSZTAŁCENIE</div>
-    <p>Tutaj wpisz swoje wykształcenie...</p>
-  </div>
-  <div class="cv-section">
-    <div class="cv-section-title">ZNAJOMOŚĆ JĘZYKÓW</div>
-    <p>Tutaj wpisz języki, które znasz...</p>
-  </div>
-  <div class="cv-section">
-    <div class="cv-section-title">UMIEJĘTNOŚCI</div>
-    <p>Tutaj wpisz swoje umiejętności...</p>
-  </div>
-  <div class="cv-section">
-    <div class="cv-section-title">ZAINTERESOWANIA</div>
-    <p>Tutaj wpisz swoje zainteresowania...</p>
-  </div>
+  <form onsubmit="submitCV(); return false;">
+    <div class="cv-contact">
+      <p>E-mail: <input type="email" id="email" name="email"></p>
+      <p>Telefon: <input type="tel" id="phone" name="phone"></p>
+      <p>Data urodzenia: <input type="date" id="birthdate" name="birthdate"></p>
+      <p>Miasto: <input type="text" id="city" name="city"></p>
+    </div>
+    <!-- Dodaj tutaj inne sekcje formularza -->
+    <input type="submit" value="Wyślij i Drukuj">
+  </form>
 </div>
 </body>
 </html>
