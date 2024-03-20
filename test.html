@@ -1,6 +1,3 @@
-import pdfkit
-
-html_content = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,11 +45,3 @@ html_content = """
   </div>
 </body>
 </html>
-"""
-
-# Zapisz kod HTML do pliku
-with open('cv.html', 'w') as f:
-    f.write(html_content)
-
-# Wygeneruj PDF z pliku HTML
-pdfkit.from_file('cv.html', 'cv.pdf')
