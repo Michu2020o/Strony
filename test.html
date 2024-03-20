@@ -35,7 +35,10 @@
 function generatePDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+    doc.addFont('https://cdn.jsdelivr.net/gh/lcdsantos/jQuery-FontSpy/DejaVuSans.ttf', 'DejaVuSans', 'normal');
 
+    // Ustawiamy font na DejaVuSans
+    doc.setFont('DejaVuSans');
     // Ustawienia formatowania dla jsPDF
     doc.setFontSize(10);
     doc.setTextColor(100);
