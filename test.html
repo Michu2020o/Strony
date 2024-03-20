@@ -65,8 +65,8 @@
       const & jsPDF } = window. jspdf;
       const doc = new jsPDF ();
 
-     doc. text( 'CV', 20, 20);
-     doc. text( 'Imie: ' + document.getElementById( 'name' ).value, 20, 50);
+      doc. text( 'CV', 20, 20);
+      doc. text( 'Imie: ' + document.getElementById( 'name' ).value, 20, 50);
     
 
       doc.save('CV.pdf');
