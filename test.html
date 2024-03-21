@@ -13,28 +13,40 @@
 <script>
 function submitCV() {
   var cvData = {
+    name: document.getElementById('name').value,
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
     birthdate: document.getElementById('birthdate').value,
     city: document.getElementById('city').value,
     // Dodaj tutaj inne pola z formularza
   };
-  localStorage.setItem('cvData', JSON.stringify(cvData));
-  window.location.href = 'zadanka/lod.html'; // Przekieruj do strony do druku
+
+  // Obsługa zdjęcia
+  var fileInput = document.getElementById('foto');
+  var file = fileInput.files[0];
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    cvData.photo = event.target.result; // Dodanie zdjęcia do danych CV
+    localStorage.setItem('cvData', JSON.stringify(cvData));
+    window.location.href = 'lod.html'; // Przekieruj do strony do druku
+  };
+  reader.readAsDataURL(file);
 }
 </script>
 </head>
 <body>
 <div class="cv-container">
   <div class="cv-header">
-    <h1>CV</h1>
+    <h1>CV GENERATOR</h1>
   </div>
   <form onsubmit="submitCV(); return false;">
     <div class="cv-contact">
+      <p>Imię i nazwisko: <input type="name" id="name" name="name"></p>
       <p>E-mail: <input type="email" id="email" name="email"></p>
       <p>Telefon: <input type="tel" id="phone" name="phone"></p>
       <p>Data urodzenia: <input type="date" id="birthdate" name="birthdate"></p>
       <p>Miasto: <input type="text" id="city" name="city"></p>
+      <p>Tutaj wstaw swoje zdjęcie: <input type="file" id="foto" name="foto"></p>
     </div>
     <!-- Dodaj tutaj inne sekcje formularza -->
     <input type="submit" value="Wyślij i Drukuj">

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .name { font-size: 32px; font-weight: bold; }
+  .cv-header { text-align: center; margin-bottom: 20px; }
+  .cv-contact { margin-left: 40px; }
+  .cv-section { margin-top: 20px; }
+  .cv-section-title { font-size: 20px; border-bottom: 1px solid #000; }
+  .cv-section-content { margin-left: 20px; }
+</style>
+<script>
+window.onload = function() {
+  var cvData = JSON.parse(localStorage.getItem('cvData'));
+  if(cvData) {
+    document.getElementById('name').textContent = cvData.name;
+    document.getElementById('email').textContent = cvData.email;
+    document.getElementById('phone').textContent = cvData.phone;
+    document.getElementById('birthdate').textContent = cvData.birthdate;
+    document.getElementById('city').textContent = cvData.city;
+    
+    // Wyświetlenie zdjęcia
+    var foto = document.getElementById('foto');
+    foto.src = cvData.photo;
+    foto.alt = "Zdjęcie";
+  }
+}
+</script>
+</head>
+<body>
+<div class="cv-container">
+  <div class="cv-header">
+    <h1>CV</h1>
+  </div>
+  <div class="cv-contact">
+    <p class="name" id="name"></p>
+    <div class="cv-section">
+      <p class="cv-section-title">Kontakt</p>
+      <div class="cv-section-content">
+        <p>E-mail: <span id="email"></span></p>
+        <p>Telefon: <span id="phone"></span></p>
+      </div>
+    </div>
+    <div class="cv-section">
+      <p class="cv-section-title">Informacje osobiste</p>
+      <div class="cv-section-content">
+        <p>Data urodzenia: <span id="birthdate"></span></p>
+        <p>Miasto: <span id="city"></span></p>
+      </div>
+    </div>
+    <!-- Zdjęcie -->
+    <div class="cv-section">
+      <p class="cv-section-title">Zdjęcie</p>
+      <div class="cv-section-content">
+        <img id="foto" alt="Zdjęcie">
+      </div>
+    </div>
+    <!-- Wyświetl tutaj inne sekcje CV -->
+  </div>
+</div>
+</body>
+</html>
