@@ -6,6 +6,7 @@
 <title>CV</title>
 <style>
   body { font-family: Arial, sans-serif; }
+  .cv-container{ margin-top: -1000px;}
   .name { font-size: 32px; font-weight: bold; }
   .cv-header { text-align: center; margin-bottom: 20px; }
   .cv-contact { margin-left: 40px; }
@@ -13,6 +14,8 @@
   .cv-section-title { font-size: 20px; border-bottom: 1px solid #000; }
   .cv-section-content { margin-left: 20px; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
 window.onload = function() {
   var cvData = JSON.parse(localStorage.getItem('cvData'));
@@ -28,10 +31,25 @@ window.onload = function() {
     foto.src = cvData.photo;
     foto.alt = "Zdjęcie";
   }
+
+/** // Automatyczne zapisywanie strony jako PDF po załadowaniu
+  html2canvas(document.body, {
+    onrendered: function(canvas) {
+      var imgData = canvas.toDataURL('image/png');
+      var doc = new jsPDF('p', 'mm', 'a4');
+      doc.addImage(imgData, 'PNG', 10, 10);
+      doc.save('CV.pdf');
+    }
+  });**/
+  
 }
+
 </script>
 </head>
 <body>
+  <div style="position:relative; width:100px; height: 1077px;margin-left: 698px ;">
+    <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:black;"></div>
+  </div>
 <div class="cv-container">
   <div class="cv-header">
     <h1>CV</h1>
@@ -62,5 +80,6 @@ window.onload = function() {
     <!-- Wyświetl tutaj inne sekcje CV -->
   </div>
 </div>
+<hr style="margin-top: 111px;height: 1px;">
 </body>
 </html>
