@@ -6,80 +6,109 @@
 <title>CV</title>
 <style>
   body { font-family: Arial, sans-serif; }
-  .cv-container{ margin-top: -1000px;}
-  .name { font-size: 32px; font-weight: bold; }
-  .cv-header { text-align: center; margin-bottom: 20px; }
-  .cv-contact { margin-left: 40px; }
+  .cv-header { text-align: center; }
   .cv-section { margin-top: 20px; }
   .cv-section-title { font-size: 20px; border-bottom: 1px solid #000; }
-  .cv-section-content { margin-left: 20px; }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-<script>
-window.onload = function() {
-  var cvData = JSON.parse(localStorage.getItem('cvData'));
-  if(cvData) {
-    document.getElementById('name').textContent = cvData.name;
-    document.getElementById('email').textContent = cvData.email;
-    document.getElementById('phone').textContent = cvData.phone;
-    document.getElementById('birthdate').textContent = cvData.birthdate;
-    document.getElementById('city').textContent = cvData.city;
-    
-    // Wyświetlenie zdjęcia
-    var foto = document.getElementById('foto');
-    foto.src = cvData.photo;
-    foto.alt = "Zdjęcie";
-  }
-
-/** // Automatyczne zapisywanie strony jako PDF po załadowaniu
-  html2canvas(document.body, {
-    onrendered: function(canvas) {
-      var imgData = canvas.toDataURL('image/png');
-      var doc = new jsPDF('p', 'mm', 'a4');
-      doc.addImage(imgData, 'PNG', 10, 10);
-      doc.save('CV.pdf');
-    }
-  });**/
-  
-}
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
 </head>
 <body>
-  <div style="position:relative; width:100px; height: 1077px;margin-left: 698px ;">
-    <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:black;"></div>
-  </div>
 <div class="cv-container">
   <div class="cv-header">
-    <h1>CV</h1>
+    <h1>CV GENERATOR</h1>
   </div>
-  <div class="cv-contact">
-    <p class="name" id="name"></p>
-    <div class="cv-section">
-      <p class="cv-section-title">Kontakt</p>
-      <div class="cv-section-content">
-        <p>E-mail: <span id="email"></span></p>
-        <p>Telefon: <span id="phone"></span></p>
-      </div>
+  <form>
+    <div class="cv-contact">
+      <p>Imię i nazwisko: <input type="text" id="name" name="name"></p>
+      <p>E-mail: <input type="email" id="email" name="email"></p>
+      <p>Telefon: <input type="tel" id="phone" name="phone"></p>
+      <p>Data urodzenia: <input type="date" id="birthdate" name="birthdate"></p>
+      <p>Miasto: <input type="text" id="city" name="city"></p>
+      <p>Tutaj wstaw swoje zdjęcie: <input type="file" id="foto" name="foto"></p>
+      <p>Podaj swoje doświadczenie zawodowe: <input type="text" id="exp" name="exp"></p>
+      <p>Podaj swoje wykształcenie: <input type="text" id="wyszt" name="wykszt"></p>
+      <p>Podaj języki, które znasz: <input type="text" id="lang" name="lang"></p>
+      <p>Podaj swoje umiejętności: <input type="text" id="skills" name="skills"></p>
+      <p>Podaj swoje zainteresowania: <input type="text" id="interest" name="interest"></p>
     </div>
-    <div class="cv-section">
-      <p class="cv-section-title">Informacje osobiste</p>
-      <div class="cv-section-content">
-        <p>Data urodzenia: <span id="birthdate"></span></p>
-        <p>Miasto: <span id="city"></span></p>
-      </div>
-    </div>
-    <!-- Zdjęcie -->
-    <div class="cv-section">
-      <p class="cv-section-title">Zdjęcie</p>
-      <div class="cv-section-content">
-        <img id="foto" alt="Zdjęcie">
-      </div>
-    </div>
-    <!-- Wyświetl tutaj inne sekcje CV -->
-  </div>
+    <input type="button" onclick="generatePDF()" value="Generuj">
+  </form>
 </div>
-<hr style="margin-top: 111px;height: 1px;">
+
+<script>
+    function generatePDF() {
+      var cvData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        birthdate: document.getElementById('birthdate').value,
+        city: document.getElementById('city').value,
+        exp: document.getElementById('exp').value,
+        wyszt: document.getElementById('wyszt').value,
+        lang: document.getElementById('lang').value,
+        skills: document.getElementById('skills').value,
+        interest: document.getElementById('interest').value,
+      };
+    
+      var fileInput = document.getElementById('foto');
+      var file = fileInput.files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          cvData.photo = event.target.result;
+          generatePDFWithData(cvData);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        generatePDFWithData(cvData);
+      }
+    }
+    
+    function generatePDFWithData(cvData) {
+      var docDefinition = {
+        content: [
+          {
+            columns: [
+              [
+                { text: '— CV —', style: 'header' },
+                { text: 'E-mail: ' + cvData.email, style: 'subheader' },
+                { text: 'Telefon: ' + cvData.phone, style: 'subheader' },
+                { text: 'Data urodzenia: ' + cvData.birthdate, style: 'subheader' },
+                { text: 'Miasto: ' + cvData.city, style: 'subheader' },
+                { text: 'DOŚWIADCZENIE ZAWODOWE: ' + cvData.exp, style: 'sectionTitle' },
+                { text: 'WYKSZTAŁCENIE: ' + cvData.wyszt, style: 'sectionTitle' },
+                { text: 'ZNAJOMOŚĆ JĘZYKÓW: ' + cvData.lang, style: 'sectionTitle' },
+                { text: 'UMIEJĘTNOŚCI: ' + cvData.skills, style: 'sectionTitle' },
+                { text: 'ZAINTERESOWANIA: ' + cvData.interest, style: 'sectionTitle' },
+              ],
+              cvData.photo ? { image: cvData.photo, width: 150, alignment: 'right' } : {},
+            ],
+          },
+        ],
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            alignment: 'center',
+            margin: [0, 0, 0, 20]
+          },
+          subheader: {
+            fontSize: 14,
+            bold: true,
+            margin: [0, 10, 0, 0]
+          },
+          sectionTitle: {
+            fontSize: 14,
+            bold: true,
+            decoration: 'underline',
+            margin: [0, 20, 0, 10]
+          }
+        }
+      };
+    
+      pdfMake.createPdf(docDefinition).download('CV.pdf');
+    }
+</script>    
 </body>
 </html>
