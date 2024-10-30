@@ -10,76 +10,84 @@
 <meta name="robots" content="all" />
 <style>
 th,td{text-align: center;}
-td{width: 40px;}
-#blue{background-color: aqua;}
-th{width: 40px;}
+td{width: 50px; height: 40px;}
+th{width: 30px; height: 30px;;}
+#blue{background-color: #ccecfe;}
+#ulgreen{background-color: #eaf2dd;}
+#lgreen{background-color: #d7e3bd;}
+#green{background-color: #c2d69b;}
 table{border-collapse: collapse;}
 </style>
 </head> 
 <body> 
-<table border="1">
-<tr id="blue">
-<th id="blue">1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th>
-</tr>
-<tr>
-<th id="blue">2</th> <td>a</td> <td>b</td> <td>c</td> <td>d</td> <td>e</td>
-</tr>
-<tr>
-<th id="blue">3</th> <td>f</td> <td>g</td> <td>h</td> <td>i</td> <td>j</td>
-</tr>
-<tr>
-<th id="blue">4</th> <td>k</td> <td>l</td> <td>m</td> <td>n</td> <td>o</td>
-</tr>
-<tr>
-<th id="blue">5</th> <td>p</td> <td>q</td> <td>r</td> <td>s</td> <td>t</td>
-</tr>
-<tr>
-<th id="blue">6</th> <td>u</td> <td>v</td> <td>w</td> <td>y</td> <td>z</td>
-</tr>
-</table>
-<br>
+<center>
+<h1>Tabela bez scalania</h1>
 <table border="1">
 <tr id="blue">
 <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th>
 </tr>
 <tr>
-<th id="blue">2</th> <td>a</td> <td colspan="2">b, c</td> <td>d</td> <td>e</td>
+<th id="blue">2</th> <td>a</td> <td id="ulgreen">b</td> <td id="ulgreen">c</td> <td>d</td> <td>e</td>
 </tr>
 <tr>
-<th id="blue">3</th> <td>f</td> <td>g</td> <td>h</td> <td>i</td> <td rowspan="2">j, o</td>
+<th id="blue">3</th> <td>f</td> <td>g</td> <td>h</td> <td>i</td> <td id="lgreen">j</td>
+</tr>
+<tr>
+<th id="blue">4</th> <td>k</td> <td>l</td> <td>m</td> <td>n</td> <td id="lgreen">o</td>
+</tr>
+<tr>
+<th id="blue">5</th> <td id="green">p</td> <td id="green">q</td> <td id="green">r</td> <td>s</td> <td>t</td>
+</tr>
+<tr>
+<th id="blue">6</th> <td id="green">u</td> <td id="green">v</td> <td id="green">w</td> <td>y</td> <td>z</td>
+</tr>
+</table>
+<br>
+<h1>Tabela z scalaniem</h1>
+<table border="1">
+<tr id="blue">
+<th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th>
+</tr>
+<tr>
+<th id="blue">2</th> <td>a</td> <td colspan="2" id="ulgreen">b, c</td> <td>d</td> <td>e</td>
+</tr>
+<tr>
+<th id="blue">3</th> <td>f</td> <td>g</td> <td>h</td> <td>i</td> <td rowspan="2" id="lgreen">j, o</td>
 </tr>
 <tr>
 <th id="blue">4</th> <td>k</td> <td>l</td> <td>m</td> <td>n</td>
 </tr>
 <tr>
-<th id="blue">5</th> <td colspan="3" rowspan="2">p, q, r, u, v, w</td> <td>s</td> <td>t</td>
+<th id="blue">5</th> <td colspan="3" rowspan="2" id="green">p, q, r, u, v, w</td> <td>s</td> <td>t</td>
 </tr>
 <tr>
 <th id="blue">6</th> <td>y</td> <td>z</td>
 </tr>
 </table>
 <br>
+<h1>Tabela z scalonymi inicjałami</h1>
 <table border="1">
 <tr id="blue">
 <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th>
 </tr>
 <tr>
-<th id="blue">2</th> <td>a</td> <td>b</td> <td>c</td> <td>d</td> <td>e</td>
+<th id="blue">2</th> <td>a</td> <td id="ulgreen">b</td> <td id="ulgreen">c</td> <td>d</td> <td>e</td>
 </tr>
 <tr>
 <th id="blue">3</th> <td>f</td> <td>g</td> <td>h</td> <td>i</td> <td>j</td>
 </tr>
 <tr>
-<th id="blue">4</th> <td>k</td> <td>l</td> <td colspan="3">m, n, o</td>
+<th id="blue">4</th> <td>k</td> <td>l</td> <td colspan="3" id="lgreen">m, n, o</td>
 </tr>
 <tr>
-<th id="blue">5</th> <td>p</td> <td>q</td> <td>r</td> <td>s</td> <td>t</td>
+<th id="blue">5</th> <td id="green">p</td> <td id="green">q</td> <td id="green">r</td> <td>s</td> <td>t</td>
 </tr>
 <tr>
-<th id="blue">6</th> <td>u</td> <td>v</td> <td>w</td> <td>y</td> <td>z</td>
+<th id="blue">6</th> <td id="green">u</td> <td id="green">v</td> <td id="green">w</td> <td>y</td> <td>z</td>
 </tr>
 </table>
-<footer class="animowane linia"><a href="../index.html"class="nielink">Powrót</a></footer>
+</center>
+<section><a href="../index.html"class="nielink">Powrót</a></section>
 <!--          ><(((('>          -->
 </body> 
 </html>
