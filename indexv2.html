@@ -3,99 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michał Okoń - Portfolio</title>
+    <title>Michał Okoń 4D - Portfolio</title>
     <link rel="icon" href="zadanka/apple.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: rgba(255, 255, 255, 0.9);
-            --secondary-color: rgba(255, 255, 255, 0.7);
-            --accent-color: #007AFF;
-            --background-gradient: linear-gradient(45deg, #0a0a0a, #1a1a1a);
-            --glass-bg: rgba(15, 15, 15, 0.65);
-            --border-radius: 12px;
-            --spacing: 1rem;
+            --primary-text: rgba(255, 255, 255, 0.95);
+            --secondary-text: rgba(255, 255, 255, 0.7);
+            --accent-color: #4a90e2;
+            --background-overlay: rgba(0, 0, 0, 0.6);
+            --transition-speed: 0.3s;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            background: var(--background-gradient);
-            color: var(--primary-color);
-            line-height: 1.6;
+            color: var(--primary-text);
             overflow-x: hidden;
+            position: relative;
         }
 
-        .video-container {
+        .video-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             z-index: -1;
-            opacity: 0.4;
+            overflow: hidden;
+        }
+
+        .video-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-overlay);
         }
 
         video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
         }
 
         header {
             padding: 1.5rem;
-            backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .content-wrapper {
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 2rem 2rem;
-        }
-
-        .portfolio-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .dropdown-container {
             position: relative;
-            display: inline-block;
+            margin-right: 2rem;
+        }
+
+        .dropdown-trigger {
+            background: none;
+            border: none;
+            color: var(--primary-text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            transition: background var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dropdown-trigger:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .dropdown-list {
             position: absolute;
             right: 0;
             top: 100%;
-            min-width: 240px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-radius: var(--border-radius);
+            min-width: 250px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 8px;
             padding: 0.5rem 0;
             margin-top: 0.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transform: translateY(-10px);
+            transition: all var(--transition-speed) ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
@@ -103,113 +117,118 @@
         .dropdown-container:hover .dropdown-list {
             opacity: 1;
             visibility: visible;
+            transform: translateY(0);
         }
 
         .dropdown-list a {
             display: block;
-            padding: 0.75rem 1.5rem;
-            color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            color: var(--secondary-text);
             text-decoration: none;
             transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-list a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
         }
 
         .dropdown-list a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.03);
             padding-left: 2rem;
+            color: var(--primary-text);
         }
 
-        .nav-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+        .dropdown-list a:hover::before {
+            transform: scaleY(1);
         }
 
         footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
             text-align: center;
-            padding: 2rem;
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: auto;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
         }
 
         @media (max-width: 768px) {
-            .video-container {
+            .video-wrapper video {
                 display: none;
             }
             
-            body {
+            .video-wrapper::after {
                 background: #0a0a0a;
             }
             
-            .content-wrapper {
-                padding: 80px 1rem 1rem;
+            .dropdown-container {
+                margin-right: 0;
+                width: 100%;
             }
             
-            .portfolio-card {
-                padding: 1.5rem;
+            .dropdown-trigger {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dropdown-list {
+                position: static;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video autoplay muted loop>
+    <div class="video-wrapper">
+        <video autoplay muted loop playsinline poster="zadanka/fallback-image.jpg">
             <source src="zadanka/apple.mp4" type="video/mp4">
         </video>
     </div>
 
     <header>
-        <nav>
+        <div class="header-content">
+            <h1>Michał Okoń 4D</h1>
             <div class="dropdown-container">
-                <button class="nav-link">
-                    <i class="fas fa-folder-open"></i>
-                    Moje projekty
+                <button class="dropdown-trigger">
+                    <span>Projekty</span>
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
+                        <path d="M1 1l5 5 5-5"/>
+                    </svg>
                 </button>
                 <div class="dropdown-list">
-                    <a href="zadanka/kotwice_auta.html">
-                        <i class="fas fa-car"></i>
-                        Artykuł o autach
-                    </a>
-                    <a href="zadanka/kotwice.html">
-                        <i class="fas fa-anchor"></i>
-                        Strona Kotwice
-                    </a>
-                    <a href="zadanka/herby.html">
-                        <i class="fas fa-shield-alt"></i>
-                        Herby
-                    </a>
-                    <a href="zadanka/tabele.html">
-                        <i class="fas fa-table"></i>
-                        Tabele
-                    </a>
+                    <a href="zadanka/kotwice_auta.html">Artykuł o autach</a>
+                    <a href="zadanka/kotwice.html">Strona Kotwice</a>
+                    <a href="zadanka/herby.html">Herby</a>
+                    <a href="zadanka/tabele.html">Tabele</a>
+                    <a href="zadanka/doswiadczenie.html">Zasada zachowania pędu</a>
+                    <a href="zadanka/zad_atlas/atlas.html">Atlas Ptaków</a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <div class="content-wrapper">
-        <div class="portfolio-card">
-            <h1>Michał Okoń</h1>
-            <p class="subtitle">Klasa 4D</p>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> Michu2020o@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +48 123 456 789</p>
-            </div>
-        </div>
-
-        <div class="portfolio-card">
-            <h2>O mnie</h2>
-            <p>Jestem uczniem klasy 4D pasjonującym się tworzeniem stron internetowych i nowymi technologiami. W moich projektach staram się łączyć funkcjonalność z nowoczesnym designem.</p>
-        </div>
-    </div>
-
     <footer>
-        <p>&copy; 2024 Michał Okoń | Wszelkie prawa zastrzeżone</p>
+        kontakt: Michu2020o@gmail.com
     </footer>
 </body>
 </html>
