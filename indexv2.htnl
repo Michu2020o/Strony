@@ -1,169 +1,215 @@
-body {
-  margin: 20px;
-  overflow: hidden;
-  background-color: black;
-}
-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 50%;
-  min-height: auto;
-  height: auto;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: -1;
-  margin-top: 32px;
-}
-header {
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 20px;
-  font-size: 25px;
-}
-section {
-  color: white;
-  position: fixed;
-  right: 20px;
-}
-p{
-  margin-top: 24px;
-}
-footer{
-  color: white;
-  position: fixed;
-  bottom: 0;
-  left: 20px; 
-}
-.animowane {
-  position: relative;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-}
-.animowane::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: rgb(255, 255, 255);
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: transform 0.3s ease, visibility 0.3s ease;}
-.animowane:hover::before {
-    visibility: visible;
-    transform: scaleX(1);
-}
-.linia {
-  white-space: nowrap;
-}
-.hide {
-  color: transparent;
-  user-select: none;
-}
-.nielink {
-  display: inline-block;
-  cursor: pointer;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.dropdown-list {
-  display: none;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  background-color: black;
-  z-index: 1;
-  right: 0;
-}
-.dropdown-list li {
-  text-align: center;
-  border-bottom: 1px solid white;
-}
-.dropdown-container:hover .dropdown-list {
-  display: block ;
-}
-@media only screen and (max-width: 600px) {
-  video {
-    width: 250%;
-  }
-  section {
-    top: 18px;
-    font-size: 25px;
-  }
-  p{
-    font-size: 20px;
-  }
-  footer{
-    font-size: 14px;
-  }
-  .linia span {
-    margin-right: 12,5px;
-  }
-  .nielink {
-    font-size: 20px;
-  }
-  .dropdown-list {
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
-  }
-  .dropdown-list li {
-    padding: 6px;
-  }
-  }
-@media only screen and (min-width: 601px) and (max-width: 900px) {
-  video {
-    width: 165%;
-  }
-  section {
-    top: 20px;
-    font-size: 20px;
-  }
-  p{
-    font-size: 25px;
-  }
-  footer{ 
-    font-size: 20px;
-  }
-  .linia span {
-    margin-right: 15px;
-  }
-  .nielink {
-    font-size: 25px;
-  }
-  .dropdown-list {
-    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
-  }
-  .dropdown-list li {
-    padding: 9px;
-  }
-  }
-@media only screen and (min-width: 901px) {
-  video {
-    width: auto;
-  }
-  section {
-    top: 20px;
-    font-size: 25px;
-  }
-  p{
-    font-size: 25px;
-  }
-  footer{ 
-    font-size: 18px;
-  }
-  .linia span {
-    margin-right: 25px;
-  }
-  .nielink {
-    font-size: 25px;
-  }
-  .dropdown-list {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-  .dropdown-list li {
-    padding: 12px;
-  }
-  }
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michał Okoń - Portfolio</title>
+    <link rel="icon" href="zadanka/apple.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: rgba(255, 255, 255, 0.9);
+            --secondary-color: rgba(255, 255, 255, 0.7);
+            --accent-color: #007AFF;
+            --background-gradient: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+            --glass-bg: rgba(15, 15, 15, 0.65);
+            --border-radius: 12px;
+            --spacing: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background-gradient);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        header {
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 2rem 2rem;
+        }
+
+        .portfolio-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-list {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            min-width: 240px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-container:hover .dropdown-list {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-list a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-list a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color);
+            padding-left: 2rem;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                display: none;
+            }
+            
+            body {
+                background: #0a0a0a;
+            }
+            
+            .content-wrapper {
+                padding: 80px 1rem 1rem;
+            }
+            
+            .portfolio-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="zadanka/apple.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <header>
+        <nav>
+            <div class="dropdown-container">
+                <button class="nav-link">
+                    <i class="fas fa-folder-open"></i>
+                    Moje projekty
+                </button>
+                <div class="dropdown-list">
+                    <a href="zadanka/kotwice_auta.html">
+                        <i class="fas fa-car"></i>
+                        Artykuł o autach
+                    </a>
+                    <a href="zadanka/kotwice.html">
+                        <i class="fas fa-anchor"></i>
+                        Strona Kotwice
+                    </a>
+                    <a href="zadanka/herby.html">
+                        <i class="fas fa-shield-alt"></i>
+                        Herby
+                    </a>
+                    <a href="zadanka/tabele.html">
+                        <i class="fas fa-table"></i>
+                        Tabele
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="portfolio-card">
+            <h1>Michał Okoń</h1>
+            <p class="subtitle">Klasa 4D</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Michu2020o@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +48 123 456 789</p>
+            </div>
+        </div>
+
+        <div class="portfolio-card">
+            <h2>O mnie</h2>
+            <p>Jestem uczniem klasy 4D pasjonującym się tworzeniem stron internetowych i nowymi technologiami. W moich projektach staram się łączyć funkcjonalność z nowoczesnym designem.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Michał Okoń | Wszelkie prawa zastrzeżone</p>
+    </footer>
+</body>
+</html>
